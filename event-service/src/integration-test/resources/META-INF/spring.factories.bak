@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.michaeltang.restapi.configurations.CommonConfigurations,\
+com.michaeltang.restapi.configurations.UserServiceConfigurations

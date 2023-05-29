@@ -1,0 +1,31 @@
+   
+server:
+  servlet:
+    # Use different context-path to avoid session cookie overlapping
+    context-path: /
+  port: 8781
+
+# Define security
+security:
+  basic:
+    enabled: false
+  ignored: /** /css/**,/js/**,/favicon.ico,/webjars/**
+
+logging:
+  level:
+    ROOT: INFO
+      
+spring:
+  profiles: docker
+  jpa:
+    hibernate:
+      ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb?useUnicode=true&characterEncoding=utf-8
+
+api:
+   exception:
+      message: "Error"
+---
+server:
+  port: 8001
