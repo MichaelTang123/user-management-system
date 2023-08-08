@@ -1,15 +1,12 @@
-
-name: BDD
-
 on:
   repository_dispatch:
-  
-jobs:
-  steps:
-      - env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-          ISSUE_URL: ${{ github.event.issue.html_url }}
-        run: |
-          gh issue edit $ISSUE_URL --add-label "triage"
+    types: [bdd-test]
 
-  
+jobs:
+  run_if_failure:
+    if: ${{ !github.event.client_payload.passed }}
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          MESSAGE: ${{ github.event.client_payload.message }}
+        run: echo $MESSAGE
